@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="" id="">
+    <img src="" alt="">
+    <script>
+
+        // 原生 JS 方式
+        const fileBtn = document.querySelector('[type="file"]');
+        const img = document.querySelector('img');
+
+        fileBtn.onchange = function(){
+            console.dir(this);
+            console.dir(this.files[0]);
+            // 从上传按钮中获取到单个文件对象
+            const file = this.files[0];
+            // PS：本地上传后其实会在浏览器的缓存中，会有一个随机生成的地址，可通过 URL.createObjectURL() 获取
+            // 从浏览器中缓存文件，把获取某个文件的地址，这个地址格式较为特别
+            const fileUrl = URL.createObjectURL(file);
+            console.log(fileUrl);
+            // 把缓存中的图片地址设置到 img 的 src 上就可以实现预览
+            img.src = fileUrl;
+        }
+
+    </script>
+</body>
+</html>
